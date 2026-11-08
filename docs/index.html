@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>El Curao del Vera</title>
+  <meta name="description" content="Poker de Tragos, La Pirámide y Mayor o Menor en tiempo real con tus amigos.">
+  <meta name="theme-color" content="#0c1230">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="conn-banner" role="status" hidden></div>
+
+  <!-- Inicio -->
+  <main id="view-home" class="view home">
+    <div class="home-card">
+      <h1 class="logo"><span>El Curao</span><span>del Vera</span></h1>
+      <p class="tagline">Poker de tragos, pirámide y mayor o menor. Crea una sala y pásale el código a la mesa.</p>
+
+      <form id="form-home" autocomplete="off">
+        <label for="in-name">Tu nombre</label>
+        <input id="in-name" name="name" maxlength="16" placeholder="Cómo te dicen en la mesa" required>
+
+        <button type="submit" class="btn btn-primary" data-act="create">Crear sala</button>
+
+        <div class="or"><span>o entra a una sala</span></div>
+
+        <label for="in-code">Código de la sala</label>
+        <div class="row">
+          <input id="in-code" name="code" maxlength="4" placeholder="ABCD" inputmode="text" autocapitalize="characters" spellcheck="false">
+          <button type="button" class="btn" data-act="join">Entrar</button>
+        </div>
+        <p id="home-invite" class="note" hidden></p>
+        <p id="home-error" class="error" role="alert" hidden></p>
+      </form>
+      <p class="fine">Solo para mayores de 18. Nadie está obligado a tomar: cámbialo por agua cuando quieras y no manejes si bebiste.</p>
+    </div>
+  </main>
+
+  <!-- Sala -->
+  <div id="view-room" class="view room" hidden>
+    <header class="topbar">
+      <div class="top-left">
+        <span class="mini-logo">Curao del Vera</span>
+        <button class="code-chip" data-act="copy-link" title="Copiar enlace de la sala">
+          <small>Sala</small><b id="room-code">----</b>
+        </button>
+        <button class="btn btn-small" data-act="share">Invitar</button>
+      </div>
+      <div class="top-mine" id="top-mine" aria-live="polite"></div>
+      <button class="btn btn-small btn-ghost" data-act="leave">Salir</button>
+    </header>
+
+    <div class="layout">
+      <aside class="dash" aria-label="La mesa">
+        <h2>La mesa <span id="dash-count" class="count"></span></h2>
+        <ul id="players" class="players"></ul>
+        <p class="legend"><span>🍺 Tragos acumulados por tomar</span><span>🎁 Tragos disponibles para repartir</span></p>
+      </aside>
+
+      <section class="stage" id="stage" aria-live="polite"></section>
+
+      <aside class="side">
+        <div id="mybar" class="mybar"></div>
+        <details class="log-wrap" open>
+          <summary>Qué ha pasado</summary>
+          <ol id="log" class="log"></ol>
+        </details>
+      </aside>
+    </div>
+  </div>
+
+  <div id="alert-layer"></div>
+  <div id="vote-layer"></div>
+  <div id="toast-layer" aria-live="polite"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/games/poker.js"></script>
+  <script src="js/games/piramide.js"></script>
+  <script src="js/games/mayormenor.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
